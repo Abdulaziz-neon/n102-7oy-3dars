@@ -62,9 +62,9 @@ function App() {
 
   return (
     <div className="min-h-screen flex bg-slate-950 text-slate-100">
-      <aside className="w-64 bg-gradient-to-b from-slate-950 to-slate-900 border-r border-slate-800 px-6 py-7 flex flex-col gap-8">
+      <aside className="w-64 bg-linear-to-b from-slate-950 to-slate-900 border-r border-slate-800 px-6 py-7 flex flex-col gap-8">
         <div className="flex items-center gap-3">
-          <div className="h-10 w-10 rounded-2xl bg-gradient-to-tr from-indigo-500 to-fuchsia-500 shadow-lg shadow-indigo-500/30 flex items-center justify-center text-xl font-bold">
+          <div className="h-10 w-10 rounded-2xl bg-linear-to-tr from-indigo-500 to-fuchsia-500 shadow-lg shadow-indigo-500/30 flex items-center justify-center text-xl font-bold">
             A
           </div>
           <div className="flex flex-col leading-tight">
@@ -103,10 +103,10 @@ function App() {
           <div className="flex items-center gap-4">
             <button
               onClick={() => setActivePage('home')}
-              className="h-9 w-9 rounded-2xl bg-gradient-to-tr from-indigo-500 to-fuchsia-500 text-white flex items-center justify-center shadow-lg shadow-indigo-500/30 hover:brightness-110 transition"
+              className="h-9 w-9 rounded-2xl bg-linear-to-tr from-indigo-500 to-fuchsia-500 text-white flex items-center justify-center shadow-lg shadow-indigo-500/30 hover:brightness-110 transition"
               aria-label="Back to home"
             >
-              <span className="-ml-[2px] text-lg"><i className="fa-solid fa-angle-left"></i></span>
+              <span className="-ml-0.5 text-lg"><i className="fa-solid fa-angle-left"></i></span>
             </button>
             <h1 className="text-lg font-semibold tracking-wide">{title}</h1>
           </div>
@@ -120,7 +120,7 @@ function App() {
             </div>
             <button
               onClick={handleLogout}
-              className="px-6 py-2 rounded-full bg-gradient-to-tr from-indigo-500 to-fuchsia-500 text-sm font-medium shadow-lg shadow-indigo-500/30 hover:brightness-110 transition"
+              className="px-6 py-2 rounded-full bg-linear-to-tr from-indigo-500 to-fuchsia-500 text-sm font-medium shadow-lg shadow-indigo-500/30 hover:brightness-110 transition"
             >
               Log out
             </button>

@@ -160,7 +160,7 @@ function ProductsPage() {
                     <span className="text-sm font-semibold text-indigo-300">
                       ${product.price.toFixed(2)}
                     </span>
-                    <button className="text-xs px-3 py-1.5 rounded-full bg-gradient-to-tr from-indigo-500 to-fuchsia-500 text-white shadow-md shadow-indigo-500/40 hover:brightness-110 transition">
+                    <button className="text-xs px-3 py-1.5 rounded-full bg-linear-to-tr from-indigo-500 to-fuchsia-500 text-white shadow-md shadow-indigo-500/40 hover:brightness-110 transition">
                       View
                     </button>
                   </div>

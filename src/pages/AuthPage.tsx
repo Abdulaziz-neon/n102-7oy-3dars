@@ -84,7 +84,8 @@ function AuthPage({ onAuthSuccess }: AuthPageProps) {
           throw new Error("Ro'yxatdan o'tishda xatolik yuz berdi.")
         }
 
-        const user = (await response.json()) as RemoteUser
+        // ignore response payload
+        await response.json()
 
         // Ro'yxatdan o'tgandan so'ng avtomatik kirish emas,
         // foydalanuvchini login bo'limiga qaytaramiz.
@@ -115,7 +116,7 @@ function AuthPage({ onAuthSuccess }: AuthPageProps) {
       : 'Yangi akkaunt yarating va admin panelga kiring.'
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 text-slate-100 flex items-center justify-center px-4 py-8">
+    <div className="min-h-screen bg-linear-to-br from-slate-950 via-slate-900 to-slate-950 text-slate-100 flex items-center justify-center px-4 py-8">
       {/* Auth card only */}
       <div className="relative max-w-md w-full">
         <div className="absolute -top-10 right-10 h-32 w-32 rounded-full bg-indigo-500/40 blur-3xl" />
@@ -134,7 +135,7 @@ function AuthPage({ onAuthSuccess }: AuthPageProps) {
                   className={[
                     'px-3 py-1.5 rounded-full transition text-[11px]',
                     mode === 'login'
-                      ? 'bg-gradient-to-tr from-indigo-500 to-fuchsia-500 text-white shadow-md shadow-indigo-500/40'
+                    ? 'bg-linear-to-tr from-indigo-500 to-fuchsia-500 text-white shadow-md shadow-indigo-500/40'
                       : 'text-slate-400 hover:text-slate-100',
                   ].join(' ')}
                 >
@@ -146,7 +147,7 @@ function AuthPage({ onAuthSuccess }: AuthPageProps) {
                   className={[
                     'px-3 py-1.5 rounded-full transition text-[11px]',
                     mode === 'register'
-                      ? 'bg-gradient-to-tr from-indigo-500 to-fuchsia-500 text-white shadow-md shadow-indigo-500/40'
+                      ? 'bg-linear-to-tr from-indigo-500 to-fuchsia-500 text-white shadow-md shadow-indigo-500/40'
                       : 'text-slate-400 hover:text-slate-100',
                   ].join(' ')}
                 >
@@ -206,7 +207,7 @@ function AuthPage({ onAuthSuccess }: AuthPageProps) {
               <button
                 type="submit"
                 disabled={loading}
-                className="mt-1 inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-gradient-to-tr from-indigo-500 to-fuchsia-500 px-4 py-2.5 text-sm font-medium text-white shadow-lg shadow-indigo-500/40 hover:brightness-110 disabled:opacity-60 disabled:cursor-not-allowed transition"
+                className="mt-1 inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-linear-to-tr from-indigo-500 to-fuchsia-500 px-4 py-2.5 text-sm font-medium text-white shadow-lg shadow-indigo-500/40 hover:brightness-110 disabled:opacity-60 disabled:cursor-not-allowed transition"
               >
                 {loading
                   ? mode === 'login'
