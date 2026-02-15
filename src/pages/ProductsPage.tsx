@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
+import LazyImage from '../components/LazyImage'
 
 type Product = {
   id: number
@@ -145,10 +146,10 @@ function ProductsPage() {
                 className="group rounded-2xl bg-slate-900 border border-slate-800/80 hover:border-indigo-500/60 transition-colors shadow-sm shadow-black/40 flex flex-col overflow-hidden"
               >
                 <div className="h-40 bg-slate-900/80 flex items-center justify-center overflow-hidden">
-                  <img
+                  <LazyImage
                     src={product.image}
                     alt={product.title}
-                    className="h-28 object-contain transition-transform duration-200 group-hover:scale-105"
+                    className="h-28 w-full object-contain transition-transform duration-200 group-hover:scale-105"
                   />
                 </div>
                 <div className="flex flex-1 flex-col gap-2 px-4 py-3">

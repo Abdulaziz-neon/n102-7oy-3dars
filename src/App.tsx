@@ -5,6 +5,7 @@ import HomePage from './pages/HomePage.tsx'
 import ProductsPage from './pages/ProductsPage.tsx'
 import CategoryPage from './pages/CategoryPage.tsx'
 import AuthPage from './pages/AuthPage.tsx'
+import ConfirmModal from './components/ConfirmModal.tsx'
 
 type PageKey = 'home' | 'products' | 'category'
 
@@ -26,6 +27,7 @@ function App() {
     return token ? { token, email: email ?? '' } : null
   })
   const [activePage, setActivePage] = useState<PageKey>('home')
+  const [logoutModal, setLogoutModal] = useState(false)
 
   const isAuthenticated = auth !== null
 
@@ -40,6 +42,19 @@ function App() {
     window.localStorage.removeItem('auth_email')
     setAuth(null)
     setActivePage('home')
+  }
+
+  const requestLogout = () => {
+    setLogoutModal(true)
+  }
+
+  const confirmLogout = () => {
+    setLogoutModal(false)
+    handleLogout()
+  }
+
+  const cancelLogout = () => {
+    setLogoutModal(false)
   }
 
   const renderPage = () => {
@@ -61,7 +76,8 @@ function App() {
   const title = pageTitleMap[activePage]
 
   return (
-    <div className="min-h-screen flex bg-slate-950 text-slate-100">
+    <>
+      <div className="min-h-screen flex bg-slate-950 text-slate-100">
       <aside className="w-64 bg-linear-to-b from-slate-950 to-slate-900 border-r border-slate-800 px-6 py-7 flex flex-col gap-8">
         <div className="flex items-center gap-3">
           <div className="h-10 w-10 rounded-2xl bg-linear-to-tr from-indigo-500 to-fuchsia-500 shadow-lg shadow-indigo-500/30 flex items-center justify-center text-xl font-bold">
@@ -119,7 +135,7 @@ function App() {
               <span className="text-slate-500">Online</span>
             </div>
             <button
-              onClick={handleLogout}
+              onClick={requestLogout}
               className="px-6 py-2 rounded-full bg-linear-to-tr from-indigo-500 to-fuchsia-500 text-sm font-medium shadow-lg shadow-indigo-500/30 hover:brightness-110 transition"
             >
               Log out
@@ -130,7 +146,18 @@ function App() {
         {/* Page body */}
         <main className="flex-1 px-10 py-6">{renderPage()}</main>
       </div>
-    </div>
+      </div>
+      {logoutModal && (
+        <ConfirmModal
+          title="Chiqmoqchimisiz?"
+          message="Haqiqatan ham tizimdan chiqmoqchimisiz?"
+          onConfirm={confirmLogout}
+          onCancel={cancelLogout}
+          confirmText="Ha"
+          cancelText="Bekor"
+        />
+      )}
+    </>
   )
 }
 

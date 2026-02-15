@@ -39,7 +39,6 @@ function AuthPage({ onAuthSuccess }: AuthPageProps) {
     setLoading(true)
     try {
       if (mode === 'login') {
-        // LOGIN: API-dan foydalanuvchilar ro'yxatini olib, email (va mumkin bo'lsa parol) bo'yicha tekshiramiz
         const response = await fetch(USERS_API)
 
         if (!response.ok) {
@@ -51,7 +50,6 @@ function AuthPage({ onAuthSuccess }: AuthPageProps) {
         const user = users.find((u) => {
           const sameEmail =
             u.email?.toLowerCase().trim() === email.toLowerCase().trim()
-          // Baʼzi foydalanuvchilarda parol bo'lmasligi mumkin, shuning uchun mavjud bo'lsa solishtiramiz
           const passwordMatches = u.password ? u.password === password : true
           return sameEmail && passwordMatches
         })
@@ -63,7 +61,6 @@ function AuthPage({ onAuthSuccess }: AuthPageProps) {
         const token = String(user.id)
         onAuthSuccess({ token, email: user.email })
       } else {
-        // REGISTER: yangi foydalanuvchini shu API orqali yaratamiz
         const payload = {
           name: fullName || 'Yangi foydalanuvchi',
           email,
@@ -84,11 +81,8 @@ function AuthPage({ onAuthSuccess }: AuthPageProps) {
           throw new Error("Ro'yxatdan o'tishda xatolik yuz berdi.")
         }
 
-        // ignore response payload
         await response.json()
 
-        // Ro'yxatdan o'tgandan so'ng avtomatik kirish emas,
-        // foydalanuvchini login bo'limiga qaytaramiz.
         setMode('login')
         setPassword('')
         setStatus(
