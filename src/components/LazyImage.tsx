@@ -25,25 +25,28 @@ function LazyImage({
         </div>
       )}
 
-      <img
-        {...imgProps}
-        className={`${className} transition-opacity duration-200 ${
-          loading ? 'opacity-0' : 'opacity-100'
-        }`.trim()}
-        onLoad={(e) => {
-          setLoading(false)
-          onLoad && onLoad(e)
-        }}
-        onError={(e) => {
-          setLoading(false)
-          setError(true)
-          onError && onError(e)
-        }}
-      />
+      {!error && (
+        <img
+          {...imgProps}
+          className={`${className} transition-opacity duration-200 ${
+            loading ? 'opacity-0' : 'opacity-100'
+          }`.trim()}
+          onLoad={(e) => {
+            setLoading(false)
+            onLoad && onLoad(e)
+          }}
+          onError={(e) => {
+            setLoading(false)
+            setError(true)
+            onError && onError(e)
+          }}
+        />
+      )}
 
       {error && (
-        <div className="absolute inset-0 flex items-center justify-center text-xs text-red-400">
-          failed
+        <div className="absolute inset-0 flex flex-col items-center justify-center bg-slate-900/60">
+          <i className="fa-solid fa-image-slash text-2xl text-slate-500 mb-1" />
+          <span className="text-xs text-slate-400">Topilmadi</span>
         </div>
       )}
     </div>

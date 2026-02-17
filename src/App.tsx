@@ -135,6 +135,12 @@ function App() {
               <span className="text-slate-500">Online</span>
             </div>
             <button
+              className="h-9 w-9 rounded-2xl bg-slate-800 text-slate-300 flex items-center justify-center hover:bg-slate-700 transition"
+              aria-label="Like"
+            >
+              <i className="fa-regular fa-heart"></i>
+            </button>
+            <button
               onClick={requestLogout}
               className="px-6 py-2 rounded-full bg-linear-to-tr from-indigo-500 to-fuchsia-500 text-sm font-medium shadow-lg shadow-indigo-500/30 hover:brightness-110 transition"
             >
@@ -143,7 +149,6 @@ function App() {
           </div>
         </header>
 
-        {/* Page body */}
         <main className="flex-1 px-10 py-6">{renderPage()}</main>
       </div>
       </div>

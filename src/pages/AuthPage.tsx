@@ -111,7 +111,6 @@ function AuthPage({ onAuthSuccess }: AuthPageProps) {
 
   return (
     <div className="min-h-screen bg-linear-to-br from-slate-950 via-slate-900 to-slate-950 text-slate-100 flex items-center justify-center px-4 py-8">
-      {/* Auth card only */}
       <div className="relative max-w-md w-full">
         <div className="absolute -top-10 right-10 h-32 w-32 rounded-full bg-indigo-500/40 blur-3xl" />
 

@@ -10,7 +10,6 @@ function HomePage() {
         </h1>
       </header>
 
-      {/* dashboard cards */}
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
         <div className="rounded-2xl bg-slate-900/80 border border-slate-800 p-6 flex flex-col justify-between shadow-md hover:shadow-lg transition">
           <div>
@@ -45,7 +44,6 @@ function HomePage() {
         </div>
       </div>
 
-      {/* optional welcome graphic */}
       <div className="mt-12 flex justify-center">
         <svg
           className="w-48 h-48 text-indigo-500 opacity-30"
