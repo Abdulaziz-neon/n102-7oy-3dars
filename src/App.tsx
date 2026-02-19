@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useSelector } from 'react-redux'
 import './index.css'
 import NavItem from './components/NavItem.tsx'
 import HomePage from './pages/HomePage.tsx'
@@ -6,8 +7,10 @@ import ProductsPage from './pages/ProductsPage.tsx'
 import CategoryPage from './pages/CategoryPage.tsx'
 import AuthPage from './pages/AuthPage.tsx'
 import ConfirmModal from './components/ConfirmModal.tsx'
+import LikesPage from './pages/LikesPage.tsx'
+import type { RootState } from './store/store'
 
-type PageKey = 'home' | 'products' | 'category'
+type PageKey = 'home' | 'products' | 'category' | 'likes'
 
 type AuthInfo = {
   token: string
@@ -18,6 +21,7 @@ const pageTitleMap: Record<PageKey, string> = {
   home: 'Home',
   products: 'Products',
   category: 'Category',
+  likes: 'Liked Products',
 }
 
 function App() {
@@ -28,6 +32,9 @@ function App() {
   })
   const [activePage, setActivePage] = useState<PageKey>('home')
   const [logoutModal, setLogoutModal] = useState(false)
+  const likedCount = useSelector(
+    (state: RootState) => state.likes.likedProductIds.length,
+  )
 
   const isAuthenticated = auth !== null
 
@@ -63,6 +70,8 @@ function App() {
         return <ProductsPage />
       case 'category':
         return <CategoryPage />
+      case 'likes':
+        return <LikesPage />
       case 'home':
       default:
         return <HomePage />
@@ -111,6 +120,11 @@ function App() {
             active={activePage === 'category'}
             onClick={() => setActivePage('category')}
           />
+          <NavItem
+            label="Likes"
+            active={activePage === 'likes'}
+            onClick={() => setActivePage('likes')}
+          />
         </nav>
       </aside>
 
@@ -135,10 +149,16 @@ function App() {
               <span className="text-slate-500">Online</span>
             </div>
             <button
-              className="h-9 w-9 rounded-2xl bg-slate-800 text-slate-300 flex items-center justify-center hover:bg-slate-700 transition"
+              onClick={() => setActivePage('likes')}
+              className="relative h-9 w-9 rounded-2xl bg-slate-800 text-slate-300 flex items-center justify-center hover:bg-slate-700 transition"
               aria-label="Like"
             >
               <i className="fa-regular fa-heart"></i>
+              {likedCount > 0 && (
+                <span className="absolute -top-2 -right-2 h-5 w-5 rounded-full bg-red-500 text-white text-xs flex items-center justify-center font-bold">
+                  {likedCount > 99 ? '99+' : likedCount}
+                </span>
+              )}
             </button>
             <button
               onClick={requestLogout}
